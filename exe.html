@@ -1,0 +1,306 @@
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+  <script src="./calc.js"></script>
+  <style>
+    button {
+      font-size: 200%;
+      width: 40px;
+    }
+
+    input {
+      font-size: 14px;
+      height: 40px;
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+
+  <table>
+    <tbody>
+      <tr>
+        <td colspan="4"><input id="display" name="display" disabled="disabled"></td>
+      </tr>
+
+      <tr>
+        <td><button id="button1" value="1" onclick="getValue(this)">1</button></td>
+        <td><button id="button2" value="2" onclick="getValue(this)">2</button></td>
+        <td><button id="button3" value="3" onclick="getValue(this)">3</button></td>
+        <td><button id="addButton"onclick="operationplus();">+</button></td>
+      </tr>
+      <tr>
+        <td><button id="button4" value="4" onclick="getValue(this)">4</button></td>
+        <td><button id="button5" value="5" onclick="getValue(this)">5</button></td>
+        <td><button id="button6" value="6" onclick="getValue(this)">6</button></td>
+        <td><button id="subtractButton">-</button></td>
+      </tr>
+      <tr>
+        <td><button id="button7" value="7" onclick="getValue(this)">7</button></td>
+        <td><button id="button8" value="8" onclick="getValue(this)">8</button></td>
+        <td><button id="button9" value="9" onclick="getValue(this)">9</button></td>
+        <td><button id="multiplyButton">*</button></td>
+      </tr>
+      <tr>
+        <td><button id="clearButton">C</button></td>
+        <td><button id="button0" value="0">0</button></td>
+        <td><button id="equalsButton">=</button></td>
+        <td><button id="divideButton">
+            <span>&#247;</span> </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <span id="output">
+    <!-- Use this span for writing debug messages or anything else you think will help! --></span>
+
+  <script src="calc_files/calc.js"></script>
+
+
+
+
+
+
+
+</body>
+
+</html>
+let calculator=document.getElementById('display');
+let calcDisplayE1=document.getElementById('display');
+let calcDisplayValue=calcDisplayE1.value;
+let currentCalcMode=display.dataset.calcMode;
+let calcBtn=document.getElementById('equalButton');
+let clearBtn=document.getElementById('clearButton');
+let /*decimalBtn=document.getElementById('decimal-btn');
+let percentageBtn=document.getElementById('percentage-btn');*/
+let memory=[];
+let debug=false;
+if(!debug){
+  console.log=function(){}
+  display.classList.add('is-debug-mode');
+}
+/*$('.calculator-wrap').draggable({addclasses:true,});*/
+let number[
+document.getElementById(button1),
+document.getElementById(button2),
+document.getElementById(button3),
+document.getElementById(button4),
+document.getElementById(button5),
+document.getElementById(button6),
+document.getElementById(button7),
+document.getElementById(button8),
+document.getElementById(button9),
+document.getElementById(button0)
+];
+let operators[
+document.getElementById('addButton'),
+document.getElementById('substractButton'),
+document.getElementById('divideButton'),
+document.getElementById('multiplyButton')
+];
+numbers.forEach(function(element){
+  element.addEventListener('click',function(event)){
+    event.preventDefault();
+    currentCalcMode=display.dataset.calcMode;
+    if(currentCalcMode==='initial'){
+      calcDisplayE1.value=this.value;
+      memory.push(calcDisplayE1.value);
+    }
+    if(currentCalcMode==='number'){
+      calcDisplayE1.value=calcDisplayE1.value+this.value;
+      memory.pop();
+      memory.push(calcDisplayE1.value);
+    }
+    if(currentCalcMode==='operator'){
+      calcDisplayE1.value=this.value;
+      memory.push(calcDisplayE1.value);
+      console.log(memory);
+    }
+    let currentDisplayE1=document.getElementById('calc-display');
+    calculator.dataset.calcMode;
+    let currentDisplayVal=parseInt(currentDisplayE1.value);
+    console.log(memory);
+  },false);
+decimalBtn.addEventListener('click',(event)=>{
+  event.preventDefault();
+  if(calcDisplayE1.value!='0'){
+    calcDisplayE1.value=calcDisplayE1.value+'.';
+  }
+},false);
+percentageBtn.addEventListener('click',(event)=>{
+  event.preventDefault();
+  if(calcDisplayE1.value!=='0'){
+    calcDisplayE1.value=parseInt(calcDisplayE1.value)/100;
+    }
+    memory=[calcDisplayE1.value];
+    console.log(memory);
+
+  
+},false);
+calcBtn.addEventListener('click',(event)=>{
+  event.preventDefault();
+  console.log(memory);
+  let previousVal=memory[0];
+  let operator=memory[1];
+  let currentVal=memory[2];
+  let calcMethodToUse=operator.operator;
+  let result='';
+  switch(calcMethodToUse){
+    case 'add':
+    result=add(previousVal,currentVal)
+    break;
+    case 'substract':
+    result=substract(previousVal,currentVal)
+    break;
+    case 'multiply':
+    result=multiply(previousVal,currentVal)
+    break;
+    case 'divide':
+    result=divide(previousVal,currentVal)
+    break;
+  }
+  calcDisplayE1.value=result;
+  memory=[result];
+  console.log(memory);
+},false);
+const add=(a,b)=>{
+  return(+a + +b)
+}
+const substract=(a,b)=>{
+  return(a-b)
+}
+const multiply=(a,b)=>{
+  return(a*b)
+}
+const divide=(a,b)=>{
+  return(a/b)
+}
+window.addEventListener("keyup",checkkeypressed,false);
+function checkkeypressed(e){
+  console.log('click');
+  if(calcDisplayE1.is(':focus')){
+    return;
+  }
+  for(let i=48;i<58;i++){
+    console.log(i);
+    if(e.keycode==[i]){
+      $('[data-btn-val="'+([i]-48)+'"]').trigger('click');
+    }
+  }
+  if(e.which==107){
+    $('[data-operator="add"]').trigger('click');
+  }
+  if(e.which==109){
+    $('[data-operator="substract"]').trigger('click');
+  }
+  if(e.which==13||e.keycode==187){
+    $('[data-operator="equals"]').trigger('click');
+  }
+  if(e.keycode==67){
+    console.log('cmd+c');
+    $('[data-operator="equals"]').trigger('click');
+  }
+
+  }
+
+
+
+
+
+  
+function numone(){
+  document.getElementById('display').value +="1";
+}
+function numtwo(){
+  document.getElementById('display').value +="2";
+}
+function numthree(){
+  document.getElementById('display').value +="3";
+}
+function numfour(){
+  document.getElementById('display').value +="4";
+}
+function numfive(){
+  document.getElementById('display').value +="5";
+}
+function numsix(){
+  document.getElementById('display').value +="6";
+}
+function numseven(){
+  document.getElementById('display').value +="7";
+}
+function numeight(){
+  document.getElementById('display').value +="8";
+}
+function numnine(){
+  document.getElementById('display').value +="9";
+}
+function numzero(){
+  document.getElementById('display').value +="0";
+}
+let firstnumber;
+let secondnumber;
+let result;
+let operation;
+function addition(){
+operation="+";
+    firstnumber=parseInt(document.getElementById('display').value);
+    document.getElementById('display').value="0";
+    document.getElementById('display').value=firstnumber+operation;
+}
+function subtractButton(){
+operation="-";
+    firstnumber=parseInt(document.getElementById('display').value);
+      document.getElementById('display').value="0";
+    document.getElementById('display').value=firstnumber+operation;
+}
+function multiplyButton(){
+operation="*";
+    firstnumber=parseInt(document.getElementById('display').value);
+    document.getElementById('display').value="0";
+    document.getElementById('display').value=firstnumber+operation;
+}
+function divideButton(){
+operation="/";
+    firstnumber=parseInt(document.getElementById('display').value);
+    document.getElementById('display').value=firstnumber+operation;
+}
+function clr(){
+    document.getElementById('display').value="";
+  }
+function equalsButton(){
+  if(firstnumber&&operation){
+secondnumber=parseInt(document.getElementById('display').value);
+}
+    if(operation=="+"){
+      result=firstnumber+secondnumber;
+
+    }
+    else if(operation=="*"){
+      result=firstnumber*secondnumber;
+    }
+    else if(operation=="-"){
+      result=firstnumber-secondnumber;
+    }
+    else if(operation=="/"){
+      result=firstnumber/secondnumber;
+    }
+    else if(operation=="%"){
+      if(document.getElementById('display').value=="0"){
+        result=firstnumber/100;
+        document.getElementById('display').value=firstnumber+operation+"100";
+      }
+      else if(document.getElementById('display').value!="0"){
+        result=firstnumber/secondnumber*100;
+        document.getElementById('display').value=firstnumber+operation+secondnumber+"*100="+result;
+      }
+      }
+    document.getElementById('display').value="";
+    document.getElementById('display').value=result.toString();
+    document.getElementById('display').value=firstnumber+operation+secondnumber+"="+result.toString();
+    return;
+  }
+

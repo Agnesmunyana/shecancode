@@ -1,0 +1,10 @@
+.nav-right{
+	background-color: cyan;
+	display:flex; 
+	flex-direction:raw;
+	justify-content: flex-end; 
+    
+}
+body{
+	background-color: cyan;
+}

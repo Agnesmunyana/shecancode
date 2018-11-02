@@ -1,0 +1,25 @@
+.home{
+background-color: dimgray;
+text-decoration-color: gray; 
+flex-direction:row;
+display:flex; 
+justify-content:space-between;
+padding-top: 10px; 
+padding-bottom: 10px;  
+}
+.btn-group button{ 
+	background-color:dimgrey;
+	font-size:18px;
+	float:left;  
+    color:white;
+    border:none;
+    flex-wrap:inherit;     
+   }
+.btn-group2 button{
+	background-color:dimgrey; 
+	border:none; 
+	font-size: 18px;
+	color:white; 
+	flex-basis:w
+
+}

@@ -1,0 +1,19 @@
+var student{
+	name:"Agnes",
+	skills:"javascript",
+	phone:"078899"
+};
+console.log(student["name"])or(student.name)
+student.message="hello";
+//embend object inside another object
+let student{
+	name:"vest",
+	age:78,
+	message:function(){}
+	return 'hello I am ${this.name};
+	}
+jim{
+	name:"uwase",
+	age:8
+}};
+console.log(student.message())
